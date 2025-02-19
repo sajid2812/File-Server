@@ -17,3 +17,13 @@ app.get("/files", (req, res) => {
     return res.status(200).json(files);
   });
 });
+
+app.get("/files/:filename", (req, res) => {
+  const filePath = path.join(__dirname, "/files", req.params.filename);
+  fs.readFile(filePath, "utf-8", (err, data) => {
+    if (err) {
+      return res.status(404).json({ message: "File not found." });
+    }
+    return res.status(200).json({ content: data });
+  });
+});
