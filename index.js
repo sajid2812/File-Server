@@ -27,3 +27,7 @@ app.get("/files/:filename", (req, res) => {
     return res.status(200).json({ content: data });
   });
 });
+
+app.listen(3000, () => {
+  console.log("Server is listening on port 3000.");
+});
